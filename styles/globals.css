@@ -1,26 +1,89 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+body {
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Raleway", sans-serif;
+  background-color: #f4dba0;
+}
+.variant {
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-left: 4px solid #ff3b3b;
+  background-color: #bbb;
+  margin: 0 0 5px;
+  flex:1;
+}
+/* .Content {
+  display: table;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 30px;
+} */
+
+/* .correctAnswer {
+  color: #fef6e4;
+  background: #8bd3dd;
+  padding: 1rem;
+} */
+
+/* .correctAnswer:after {
+  background: #8bd3dd;
+  color: #001858;
+  visibility: visible;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  content: "correct!";
+}
+
+.incorrectAnswer {
+  background: #f582ae;
+  color: #fef6e4;
+  padding: 1rem;
+}
+
+.incorrectAnswer:after {
+  background: #f582ae;
+  color: #001858;
+  visibility: visible;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  content: "incorrect!";
+} */
+
+.correctAnswer,
+.correctAnswer :hover {
+  background-color: #1db900;
+  border-left: 4px solid #0f6300;
+  color: #fff;
+  height: 30px;
+  
+}
+.incorrectAnswer,
+.incorrectAnswer:hover {
+  background-color: #ec0000;
+  border-left: 4px solid #ff3b3b;
+  color: #fff;
+  height: 30px;
+}
+.correctAnswer,
+.incorrectAnswer[disabled] {
+  pointer-events: none;
+  opacity: 0.7;
 }

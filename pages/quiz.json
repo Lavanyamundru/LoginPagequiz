@@ -1,0 +1,49 @@
+{
+    "data": [
+      {
+        "question": "What is the capital of Croatia ?",
+        "choices": ["Split", "Osijek", "Zagreb", "Rijeka"],
+        "answer": "Zagreb"
+      },
+      {
+        "question": "What is the capital of Greece?",
+        "choices": ["Athens", "Patras", "Cutedog", "Koper"],
+        "answer": "Athens"
+      },
+      {
+        "question": "What has a neck but no head? ?",
+        "choices": ["Pan", "Bottle", "Plate", "bowl"],
+        "answer": "Bottle"
+      },
+      {
+        "question": "Where do fish keep their money?",
+        "choices": ["Pool", "Riverbank", "River","Lake"],
+        "answer": "Riverbank"
+      },
+      {
+        "question": "What flies without wings?",
+        "choices": ["Airplane", "Time", "Insect", "Animal"],
+        "answer": "Time"
+      },
+      {
+        "question": "What is the capital of Hungary ?",
+        "choices": ["Zalaegerszeg", "Eger", "Szeged", "Budapest"],
+        "answer": "Budapest"
+      },
+      {
+        "question": "What is the capital of Slovakia ?",
+        "choices": ["Košice", "Nitra", "Bratislava", "Poprad"],
+        "answer": "Bratislava"
+      },
+      {
+        "question": "What's the difference between here and there?",
+        "choices": ["R", "T", "E", "H"],
+        "answer": "H"
+      },
+      {
+        "question": "What is the capital of Germany ?",
+        "choices": ["Wolfsburg", "Munich", "Berlin", "Frankfurt"],
+        "answer": "Berlin"
+      }
+    ]
+  }
