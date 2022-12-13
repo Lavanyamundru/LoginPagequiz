@@ -13,39 +13,39 @@ const Div = styled.div`
   color: #ffffff;
 `;
 const H2 = styled.h2`
- font-weight: 600;
+  font-weight: 600;
   color: #f4f1f1;
-  margin-top:25px;
-  width:80%;
+  margin-top: 25px;
+  width: 80%;
 `;
 const RadioDiv = styled.div`
   width: 100%;
-    box-sizing: border-box;
-    clear: both;
-    font-size: 1rem;
-    position: relative;
-    text-align: inherit;
+  box-sizing: border-box;
+  clear: both;
+  font-size: 1rem;
+  position: relative;
+  text-align: inherit;
 `;
 const Label = styled.label`
-display: block;
-    text-align: left;
-    padding: 15px;
-    margin-bottom: 5px;
-    font-size: 20px;
+  display: block;
+  text-align: left;
+  padding: 15px;
+  margin-bottom: 5px;
+  font-size: 20px;
 `;
-const Button=styled.button`
-     background-color: #6d706d;
-    color:#fff;
-    padding: 10px 30px;
-    margin:auto;
-    border: 0;
-    border-radius: 3px;
-    cursor: pointer;
-`
-const Input=styled.input`
-        margin-left: 20px;
-        margin-right: 10px;
-`
+const Button = styled.button`
+  background-color: #6d706d;
+  color: #fff;
+  padding: 10px 30px;
+  margin: auto;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+`;
+const Input = styled.input`
+  margin-left: 20px;
+  margin-right: 10px;
+`;
 
 const Question = ({
   data,
@@ -69,9 +69,6 @@ const Question = ({
 
   const changeHandler = (e: any) => {
     setSelected(e.target.value);
-    if (error) {
-      setError("");
-    }
   };
 
   const nextClickHandler = (e: any) => {
@@ -88,16 +85,15 @@ const Question = ({
     } else {
       onSetStep(3);
     }
-  }
+  };
 
   return (
     <Div>
       <H2>{data.question}</H2>
       <RadioDiv ref={radiosWrapper}>
         {data.choices.map((choice: any, i: any) => (
-          <Label key={i} >
+          <Label key={i}>
             <Input
-              
               type="radio"
               name="answer"
               value={choice}
@@ -108,12 +104,7 @@ const Question = ({
         ))}
       </RadioDiv>
       {error && <div>{error}</div>}
-      <Button
-        
-        onClick={nextClickHandler}
-      >
-        Next
-      </Button>
+      <Button onClick={nextClickHandler}>Next</Button>
     </Div>
   );
 };

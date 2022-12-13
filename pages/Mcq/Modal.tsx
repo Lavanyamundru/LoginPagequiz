@@ -6,43 +6,39 @@ const Div = styled.div`
   flex-direction: column;
   background: #cae4f2;
   padding: 10px 100px 10px;
-  backdrop-filter: blur(8.5px);
-  -webkit-backdrop-filter: blur(8.5px);
   border-radius: 10px;
   color: #141313;
   border-radius: 10px;
   height: 150vh;
-  margin-top:300px;
+  margin-top: 300px;
 `;
 const YourAnsP = styled.p`
-background-color: ${(props) => (props.istrue ? "green" : "blue")};
-  flex:1;
-  margin-top:10px;
-  height:20px;
+  background-color: ${(props) => (props.IsCorrect ? "blue" : "red")};
+  flex: 1;
+  margin-top: 10px;
+  height: 20px;
 `;
-const P=styled.p`
-  margin-top:15px;
-`
-const Para=styled.p`
-  margin-top:15px;
-`
+const P = styled.p`
+  margin-top: 15px;
+`;
+const Para = styled.p`
+  margin-top: 15px;
+`;
 const CorrectAnsP = styled.p`
   background-color: #1e4d1e;
   font-size: 15px;
-  flex:1;
-  margin-top:15px;
-  height:20px;
+  flex: 1;
+  margin-top: 15px;
+  height: 20px;
 `;
 
-const Modal = ({  results, data }: any) => {
+const Modal = ({ results, data }: any) => {
   const [IsCorrect, setIsCorrect] = useState(false);
   return (
     <Div>
       <div>
-        <header>
-          <Para>Your answers</Para>
-          {/* <Button onClick={onClose}></Button> */}
-        </header>
+        <Para>Your answers</Para>
+        
         <section>
           <ul>
             {results.map((result: any, i: any) => (

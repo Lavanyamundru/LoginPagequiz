@@ -1,11 +1,9 @@
 import React from 'react'
-import Form from './Component/Form'
-import Start from'./Mcq/Start'
+import Sign from './Component/Sign'
 const index = () => {
   return (
     <div>
-     {/* <Start/> */}
-     <Form/>
+     <Sign/>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import validation from "./Validation";
+import Router from "next/router";
 
 const MainContainer = styled.div`
   display: flex;
@@ -130,19 +131,18 @@ const Input = styled.input`
 interface Login {
   Email: string;
      password: string;
-     Repeatpassword: string;
+     
    }
 export interface Errorlogin {
      Emailerror: string;
      passworderror: string;
    }
 
-function App({ submitForm }: any) {
+function App() {
   const initialValues = {
     Email: "",
     password: "",
-    Repeatpassword: "",
-  };
+   };
   const [values, setValues] = useState<Login>(initialValues);
   const [errors, setErrors] = useState<Errorlogin>({
     Emailerror: "",
@@ -150,17 +150,15 @@ function App({ submitForm }: any) {
   });
   const [dataIsCorrect, setDataIsCorrect] = useState(false);
   const handleChange = (event: any) => {
-    setValues({ ...values, [event.target.name]: event.target.value });
-    
+    setValues({ ...values, [event.target.name]: event.target.value }); 
   };
   const handleFormSubmit = () => {
     setErrors(validation(values));
-    console.log("errors", errors);
     setDataIsCorrect(true);
   };
   useEffect(() => {
     if (Object.keys(errors).length === 0 && dataIsCorrect) {
-      submitForm(true);
+      Router.push("/Mcq/Main");
     }
   });
   return (

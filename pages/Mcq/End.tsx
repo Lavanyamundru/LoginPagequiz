@@ -7,8 +7,6 @@ const Div = styled.div`
   height: 40vh;
   width: 30vw;
   background: black;
-  backdrop-filter: blur(8.5px);
-  -webkit-backdrop-filter: blur(8.5px);
   border-radius: 10px;
   color: #ffffff;
 `;
@@ -17,14 +15,14 @@ const H4 = styled.h4`
   color: #f4f1f1;
   margin-top: 25px;
   width: 100%;
-  margin-right: 15px;
+  margin-right: -45px;
 `;
 const P = styled.p`
   font-weight: 600;
   color: #f4f1f1;
   margin-top: 25px;
   width: 100%;
-  margin-right: 15px;
+  margin-right: -45px;
 `;
 const Button = styled.button`
   background-color: #6d706d;
@@ -36,31 +34,20 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const End = ({ results, data, onAnswersCheck, showModal,time }: any) => {
+const End = ({ onAnswersCheck, showModal }: any) => {
   const [correctAnswers, setCorrectAnswers] = useState(0);
-
-  useEffect(() => {
-    let correct = 0;
-    results.forEach((result: any, index: any) => {
-      if (result.a === data[index].answer) {
-        correct++;
-      }
-    });
-    setCorrectAnswers(correct);
-    // eslint-disable-next-line
-  }, []);
-
   return (
-   <>
-    {
-        !showModal && 
-    <Div>
-<H4>You have completed the quiz!</H4>
-<P>Thank you!</P>
-<Button onClick={onAnswersCheck}>Check your answers {showModal}</Button>
-</Div>
-}
-</>
+    <>
+      {!showModal && (
+        <Div>
+          <H4>You have completed the quiz!</H4>
+          <P>Thank you!</P>
+          <Button onClick={onAnswersCheck}>
+            Check your answers 
+          </Button>
+        </Div>
+      )}
+    </>
   );
 };
 
