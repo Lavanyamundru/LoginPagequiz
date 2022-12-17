@@ -1,67 +1,109 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-const Div = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  background: #cae4f2;
-  padding: 10px 100px 10px;
-  border-radius: 10px;
-  color: #141313;
-  border-radius: 10px;
-  height: 150vh;
-  margin-top: 300px;
-`;
-const YourAnsP = styled.p`
-  background-color: ${(props) => (props.IsCorrect ? "blue" : "red")};
-  flex: 1;
-  margin-top: 10px;
-  height: 20px;
-`;
+import { resourceLimits } from "worker_threads";
+
 const P = styled.p`
   margin-top: 15px;
 `;
 const Para = styled.p`
-  margin-top: 15px;
+  margin-top: 5px;
+  font-family: "PT Sans", sans-serif;
+  font-size: 18px;
 `;
-const CorrectAnsP = styled.p`
-  background-color: #1e4d1e;
-  font-size: 15px;
-  flex: 1;
-  margin-top: 15px;
-  height: 20px;
+const Pcorrect = styled.p`
+  font-family: "Open Sans", sans-serif;
+  color: #1e4d1e;
+  font-size: 20px;
+`;
+const Strong = styled.strong`
+  display: flex;
+`;
+const Section = styled.section`
+  background-color: ${(props) => (props.IsCorrect ? "#e6ffee" : "#ffd6cc")};
+  width:800px;
+`;
+const Div = styled.div`
+  background-color: ${(props) => props.choiceColor};
+  font-weight: 100;
+  color: black;
+  border-radius: 2px;
+  margin-top: 10px;
 `;
 
 const Modal = ({ results, data }: any) => {
   const [IsCorrect, setIsCorrect] = useState(false);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  // let Correct: any;
+  useEffect(() => {
+    let correct = 0;
+    results.forEach((result: any, index: any) => {
+      if (result.a === data[index]?.answer) {
+        correct++;
+      } else {
+        console.log("errror occured", data[index]);
+      }
+    });
+    setCorrectAnswers(correct);
+    // eslint-disable-next-line
+  }, []);
   return (
-    <Div>
-      <div>
-        <Para>Your answers</Para>
-        
-        <section>
-          <ul>
-            {results.map((result: any, i: any) => (
-              <li key={i}>
-                <P>
-                  <strong>
-                    <b>{result.q}</b>
-                  </strong>
-                </P>
-                <YourAnsP
-                  IsCorrect={result.a === data[i].answer ? true : false}
-                >
-                  Your answer: {result.a}
-                </YourAnsP>
-                {result.a !== data[i].answer && (
-                  <CorrectAnsP>Correct answer: {data[i].answer}</CorrectAnsP>
+    <div>
+      {/* <Para>Your answers</Para> */}
+      <Pcorrect>
+        {" "}
+        CorrectAnswers: {correctAnswers} of {data.length}
+      </Pcorrect>
+
+      <ul className="ans-card">
+        {data.map((result: any, i: any) => (
+          <li key={i}>
+            <Section
+              className="ans-section"
+              IsCorrect={result.answer === results[i].a ? true : false}
+            >
+              <p>
+                {results[i].a === "Skipped" ? (
+                  <p className="ans-p">Skipped</p>
+                ) : (
+                  ""
                 )}
-              </li>
-            ))}
-          </ul>
-        </section>
-      </div>
-    </Div>
+              </p>
+              <P className="card-title">
+                <strong>
+                  <b>{result.question}</b>
+                </strong>
+              </P>
+              {result.choices?.map((choice: any, j: any) => (
+                <Div
+                  key={j}
+                  choiceColor={
+                    result.answer === results[i].a &&
+                    results[i].a === choice &&
+                    choice == result.answer
+                      ? "#dddddd "
+                      : choice === result.answer
+                      ? "#b3ffb3"
+                      : results[i].a === choice && choice !== result.answer
+                      ? "#ff4d4d"
+                      : "transparent"
+                  }
+                >
+                  {choice}
+                </Div>
+              ))}
+              {/* <YourAnsP
+                  IsCorrect={result.answer === results[i].a ? true : false}
+                >
+                  Your answer: {results[i].a}
+                </YourAnsP>
+                {result.answer !== results[i].a && (
+                  <CorrectAnsP>Correct answer: {result.answer}</CorrectAnsP>
+                )} */}
+            </Section>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

@@ -27,12 +27,12 @@ const H2=styled.h2`
 const Start = ({ onQuizStart }:any) => {
   return(
     
-        <Div >
-          <H2>Start the quiz</H2>
-          <p>Good luck!</p>
-          <Button onClick={onQuizStart}>Start</Button>
-        </Div>
-      
+        <Div>
+  <H2>Start the quiz</H2>
+  <p >Good luck!</p>
+  <Button onClick={onQuizStart}>Start</Button>
+          </Div>
+ 
   );
 }
 

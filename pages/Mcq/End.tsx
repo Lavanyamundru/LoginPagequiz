@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { formatTime } from '../Utils';
 const Div = styled.div`
   display: flex;
   align-items: center;
@@ -12,14 +13,14 @@ const Div = styled.div`
 `;
 const H4 = styled.h4`
   font-weight: 600;
-  color: #f4f1f1;
+  color: #e2dddd;
   margin-top: 25px;
   width: 100%;
   margin-right: -45px;
 `;
 const P = styled.p`
   font-weight: 600;
-  color: #f4f1f1;
+  color: #ded8d8;
   margin-top: 25px;
   width: 100%;
   margin-right: -45px;
@@ -34,20 +35,23 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const End = ({ onAnswersCheck, showModal }: any) => {
+const End = ({ onAnswersCheck, showModal ,time}: any) => {
   const [correctAnswers, setCorrectAnswers] = useState(0);
   return (
     <>
+  <div>
       {!showModal && (
         <Div>
           <H4>You have completed the quiz!</H4>
           <P>Thank you!</P>
+          {/* <p><strong>Your time:</strong> {formatTime(time)}</p> */}
           <Button onClick={onAnswersCheck}>
             Check your answers 
           </Button>
-        </Div>
+         </Div>
       )}
-    </>
+      </div>
+      </>
   );
 };
 

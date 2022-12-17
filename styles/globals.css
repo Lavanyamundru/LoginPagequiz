@@ -12,78 +12,72 @@ body {
   height: 100vh;
   width: 100vw;
   font-family: "Raleway", sans-serif;
-  background-color: #f4dba0;
+  background-color: white;
 }
-.variant {
-  cursor: pointer;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  border-left: 4px solid #ff3b3b;
-  background-color: #bbb;
-  margin: 0 0 5px;
-  flex:1;
-}
-/* .Content {
-  display: table;
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 30px;
-} */
-
-/* .correctAnswer {
-  color: #fef6e4;
-  background: #8bd3dd;
-  padding: 1rem;
-} */
-
-/* .correctAnswer:after {
-  background: #8bd3dd;
-  color: #001858;
-  visibility: visible;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  content: "correct!";
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 800px;
+  Height:450px;
 }
 
-.incorrectAnswer {
-  background: #f582ae;
-  color: #fef6e4;
-  padding: 1rem;
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.cardness {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 400px;
+  Height:100%;
+  background-color:aqua;
+  }
+
+.cardness:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.incorrectAnswer:after {
-  background: #f582ae;
-  color: #001858;
-  visibility: visible;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  content: "incorrect!";
-} */
+.ans-section {
+  background: #597f99;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
-.correctAnswer,
-.correctAnswer :hover {
-  background-color: #1db900;
-  border-left: 4px solid #0f6300;
-  color: #fff;
+} 
+
+.ans-card{
+  height: 500px;
+    /* overflow-y: scroll; */
+    width:100%;
+}
+.ans-p{
+  margin-left: 700px;
+    border: 1px solid rgb(202, 198, 198);
+    color:rgb(23, 22, 22);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.timer {
   height: 30px;
-  
+  background: green;
+  width: 100%;
+  animation: 10s timer infinite linear;
 }
-.incorrectAnswer,
-.incorrectAnswer:hover {
-  background-color: #ec0000;
-  border-left: 4px solid #ff3b3b;
-  color: #fff;
-  height: 30px;
-}
-.correctAnswer,
-.incorrectAnswer[disabled] {
-  pointer-events: none;
-  opacity: 0.7;
+
+
+@keyframes timer {
+  100% {
+    width: 0%;
+    background: red;
+  }
+  50% {
+    background: orange;
+  }
+  0% {
+    width: 100%;
+  }
 }
