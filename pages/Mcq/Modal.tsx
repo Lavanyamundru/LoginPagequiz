@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { resourceLimits } from "worker_threads";
 
 const P = styled.p`
   margin-top: 15px;
@@ -20,7 +19,7 @@ const Strong = styled.strong`
 `;
 const Section = styled.section`
   background-color: ${(props) => (props.IsCorrect ? "#e6ffee" : "#ffd6cc")};
-  width:800px;
+  width: 900px;
 `;
 const Div = styled.div`
   background-color: ${(props) => props.choiceColor};
@@ -33,7 +32,7 @@ const Div = styled.div`
 const Modal = ({ results, data }: any) => {
   const [IsCorrect, setIsCorrect] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(0);
-  // let Correct: any;
+
   useEffect(() => {
     let correct = 0;
     results.forEach((result: any, index: any) => {
@@ -48,7 +47,6 @@ const Modal = ({ results, data }: any) => {
   }, []);
   return (
     <div>
-      {/* <Para>Your answers</Para> */}
       <Pcorrect>
         {" "}
         CorrectAnswers: {correctAnswers} of {data.length}
@@ -91,14 +89,6 @@ const Modal = ({ results, data }: any) => {
                   {choice}
                 </Div>
               ))}
-              {/* <YourAnsP
-                  IsCorrect={result.answer === results[i].a ? true : false}
-                >
-                  Your answer: {results[i].a}
-                </YourAnsP>
-                {result.answer !== results[i].a && (
-                  <CorrectAnsP>Correct answer: {result.answer}</CorrectAnsP>
-                )} */}
             </Section>
           </li>
         ))}

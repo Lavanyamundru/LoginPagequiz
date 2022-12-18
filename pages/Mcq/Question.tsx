@@ -20,7 +20,7 @@ const H3 = styled.h3`
   margin-left: 20px;
   width: 90%;
   font-size: 20px;
-  padding-top: 3rem;
+  padding-top: 2rem;
 `;
 const RadioDiv = styled.div`
   width: 100%;
@@ -64,7 +64,17 @@ const Buttonskip = styled.button`
   cursor: pointer;
   float: right;
 `;
-
+const H4 =styled.h4`
+   background-color: #dd5656;
+  color: #fff;
+  padding: 10px 30px;
+  margin-right: 15px;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  float: right;
+  margin-top:30px;
+`
 const Question = ({
   data,
   onAnswerUpdate,
@@ -72,13 +82,13 @@ const Question = ({
   activeQuestion,
   onSetActiveQuestion,
   onSetStep,
-  time,
+  answers,
 }: any) => {
-  const [selected, setSelected] = useState("");
-  // let selected: any = "";
+
+  let selected: any = "";
   const [error, setError] = useState("");
   const radiosWrapper = useRef<any>();
-  let timerid: any;
+ 
   const intervalRef = useRef<any>(null);
   const [timer, setTimer] = useState("00:00:00");
 
@@ -96,7 +106,7 @@ const Question = ({
       seconds,
     };
   }
-  //update the timer and also stop the timer when we reach zero
+ 
   function startTimer(deadline: any) {
     let { total, days, hours, minutes, seconds } = getTimeRemaining(deadline);
     if (total >= 0) {
@@ -131,10 +141,7 @@ const Question = ({
     if (findCheckedInput) {
       findCheckedInput.checked = false;
     }
-    // }, [data])
-    // if (activeQuestion < numberOfQuestions - 1) {
-    //   timerid = setTimeout(nextClickHandler, 5000);
-    // }
+  
     clearTimer(getDeadlineTime());
     return () => {
       if (intervalRef.current) {
@@ -144,33 +151,61 @@ const Question = ({
   }, [data, activeQuestion]);
 
   const changeHandler = (e: any) => {
-    setSelected(e.target.value);
-    // selected = e.target.value;
-    onAnswerUpdate((prevState:any) => [
-      ...prevState,
-      { q: data.question, a: selected },
-    ]);
+ if (answers.filter((e: any) => e.id === activeQuestion).length > 0) {
+      onAnswerUpdate((current: any) =>
+        current.map((obj: any) => {
+          if (obj.id === activeQuestion) {
+            return {
+              ...obj,
+              q: data.question,
+              a: e.target.value,
+              id: activeQuestion,
+            };
+          }
+
+          return obj;
+        })
+      );
+    } else {
+      onAnswerUpdate((prevState: any) => [
+        ...prevState,
+        { q: data.question, a: e.target.value, id: activeQuestion },
+      ]);
+    }
   };
 
   const nextClickHandler = (e: any) => {
     if (e != null) {
       clearInterval(intervalRef.current);
-    }
-    if (selected === "") {
-      onAnswerUpdate((prevState: any) => [
-        ...prevState,
-        { q: data.question, a: "Skipped" },
-      ]);
     } else {
-      // onAnswerUpdate((prevState: any) => [
-      //   ...prevState,
-      //   { q: data.question, a: selected },
-      // ]);
-      // selected = "";
+      if (answers.filter((e: any) => e.id === activeQuestion).length < 1) {
+        onAnswerUpdate((prevState: any) => [
+          ...prevState,
+          { q: data.question, a: "Skipped", id: activeQuestion },
+        ]);
+      }
     }
     if (activeQuestion < numberOfQuestions - 1) {
       onSetActiveQuestion(activeQuestion + 1);
-      setSelected("");
+     
+      selected = "";
+    } else {
+      onSetStep(3);
+    }
+  };
+  const skipQuestion = (e: any) => {
+    clearInterval(intervalRef.current);
+    if (answers.filter((e: any) => e.id === activeQuestion).length < 1) {
+      onAnswerUpdate((prevState: any) => [
+        ...prevState,
+        { q: data.question, a: "Skipped", id: activeQuestion },
+      ]);
+    }
+
+    if (activeQuestion < numberOfQuestions - 1) {
+      onSetActiveQuestion(activeQuestion + 1);
+     
+      selected = "";
     } else {
       onSetStep(3);
     }
@@ -178,7 +213,7 @@ const Question = ({
 
   return (
     <div className="card">
-      {timer}
+      <H4>{timer}</H4>
       <H3>
         {activeQuestion}
         {data.question}
@@ -198,7 +233,7 @@ const Question = ({
       </RadioDiv>
       {error && <div>{error}</div>}
       <Button onClick={nextClickHandler}>Next</Button>
-      <Buttonskip onClick={nextClickHandler}>Skip</Buttonskip>
+      <Buttonskip onClick={skipQuestion}>Skip</Buttonskip>
     </div>
   );
 };

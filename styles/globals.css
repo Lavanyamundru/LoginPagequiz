@@ -14,47 +14,50 @@ body {
   font-family: "Raleway", sans-serif;
   background-color: white;
 }
+
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  width: 800px;
-  Height:450px;
+  width: 900px;
+  Height: 450px;
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
+
 .cardness {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 400px;
-  Height:100%;
-  background-color:aqua;
-  }
+  Height: 100%;
+  background-color: aqua;
+}
 
 .cardness:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .ans-section {
   background: #597f99;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 
-} 
-
-.ans-card{
-  height: 500px;
-    /* overflow-y: scroll; */
-    width:100%;
 }
-.ans-p{
-  margin-left: 700px;
-    border: 1px solid rgb(202, 198, 198);
-    color:rgb(23, 22, 22);
+
+.ans-card {
+  height: 500px;
+  /* overflow-y: scroll; */
+  width: 100%;
+}
+
+.ans-p {
+  margin-left: 800px;
+  border: 1px solid rgb(202, 198, 198);
+  color: rgb(23, 22, 22);
 }
 
 .hidden {
@@ -74,9 +77,11 @@ body {
     width: 0%;
     background: red;
   }
+
   50% {
     background: orange;
   }
+
   0% {
     width: 100%;
   }

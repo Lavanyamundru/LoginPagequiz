@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { formatTime } from '../Utils';
+
 const Div = styled.div`
   display: flex;
   align-items: center;
@@ -35,23 +35,20 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const End = ({ onAnswersCheck, showModal ,time}: any) => {
-  const [correctAnswers, setCorrectAnswers] = useState(0);
+const End = ({ onAnswersCheck, showModal }: any) => {
   return (
     <>
-  <div>
-      {!showModal && (
-        <Div>
-          <H4>You have completed the quiz!</H4>
-          <P>Thank you!</P>
-          {/* <p><strong>Your time:</strong> {formatTime(time)}</p> */}
-          <Button onClick={onAnswersCheck}>
-            Check your answers 
-          </Button>
-         </Div>
-      )}
+      <div>
+        {!showModal && (
+          <Div>
+            <H4>You have completed the quiz!</H4>
+            <P>Thank you!</P>
+
+            <Button onClick={onAnswersCheck}>Check your answers</Button>
+          </Div>
+        )}
       </div>
-      </>
+    </>
   );
 };
 
