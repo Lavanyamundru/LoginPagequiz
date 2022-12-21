@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef } from "react";
+import internal from "stream";
 import styled from "styled-components";
 
 const Div = styled.div`
@@ -38,7 +39,7 @@ const Label = styled.label`
   font-size: 20px;
 `;
 const Button = styled.button`
-  background-color: #6d706d;
+  background-color: #c0c3c0;
   color: #fff;
   padding: 10px 30px;
   margin-right: 15px;
@@ -52,7 +53,7 @@ const Input = styled.input`
   margin-right: 10px;
 `;
 const Buttonskip = styled.button`
-  background-color: #6d706d;
+  background-color: #eca17f;
   color: #fff;
   padding: 10px 30px;
   margin-right: 10px;
@@ -64,8 +65,8 @@ const Buttonskip = styled.button`
   cursor: pointer;
   float: right;
 `;
-const H4 =styled.h4`
-   background-color: #dd5656;
+const H4 = styled.h4`
+  background-color: #dd5656;
   color: #fff;
   padding: 10px 30px;
   margin-right: 15px;
@@ -73,8 +74,18 @@ const H4 =styled.h4`
   border-radius: 3px;
   cursor: pointer;
   float: right;
-  margin-top:30px;
-`
+  margin-top: 30px;
+`;
+const Buttondisable = styled.button`
+  background-color: #484848;
+  color: #fff;
+  padding: 10px 30px;
+  margin-right: 15px;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  float: right;
+`;
 const Question = ({
   data,
   onAnswerUpdate,
@@ -84,46 +95,41 @@ const Question = ({
   onSetStep,
   answers,
 }: any) => {
-
   let selected: any = "";
   const [error, setError] = useState("");
   const radiosWrapper = useRef<any>();
- 
   const intervalRef = useRef<any>(null);
+  const [disabled, setDisabled] = useState(true);
   const [timer, setTimer] = useState("00:00:00");
-
+  let interval: any;
+  const [questionTime, setQuestionTime] = useState(0);
   function getTimeRemaining(endtime: any) {
     const total = Date.parse(endtime) - Date.parse(Date());
     const seconds = Math.floor((total / 1000) % 60);
     const minutes = Math.floor((total / 1000 / 60) % 60);
-    const hours = Math.floor(((total / 1000) * 60 * 60) % 24);
-    const days = Math.floor((total / 1000) * 60 * 60 * 24);
-    return {
-      total,
-      days,
-      hours,
-      minutes,
-      seconds,
-    };
+    return { total, minutes, seconds };
   }
- 
+
   function startTimer(deadline: any) {
-    let { total, days, hours, minutes, seconds } = getTimeRemaining(deadline);
+    let { total, minutes, seconds } = getTimeRemaining(deadline);
     if (total >= 0) {
       setTimer(
-        (hours > 9 ? hours : "0" + hours) +
-          ":" +
-          (minutes > 9 ? minutes : "0" + minutes) +
+        (minutes > 9 ? minutes : "0" + minutes) +
           ":" +
           (seconds > 9 ? seconds : "0" + seconds)
       );
     } else {
       nextClickHandler(null);
       clearInterval(intervalRef.current);
+      setDisabled(true);
     }
   }
   function clearTimer(endTime: any) {
-    setTimer("00:00:10");
+    setTimer("00:10");
+    clearInterval(interval);
+    interval = setInterval(() => {
+      setQuestionTime((prevTime) => prevTime + 1);
+    }, 1000);
     if (intervalRef.current) clearInterval(intervalRef.current);
     const id = setInterval(() => {
       startTimer(endTime);
@@ -141,17 +147,16 @@ const Question = ({
     if (findCheckedInput) {
       findCheckedInput.checked = false;
     }
-  
     clearTimer(getDeadlineTime());
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [data, activeQuestion]);
-
+  }, [activeQuestion]);
   const changeHandler = (e: any) => {
- if (answers.filter((e: any) => e.id === activeQuestion).length > 0) {
+    setDisabled(false);
+    if (answers.filter((e: any) => e.id === activeQuestion).length > 0) {
       onAnswerUpdate((current: any) =>
         current.map((obj: any) => {
           if (obj.id === activeQuestion) {
@@ -160,51 +165,70 @@ const Question = ({
               q: data.question,
               a: e.target.value,
               id: activeQuestion,
+              timeTaken: questionTime,
             };
           }
-
           return obj;
         })
       );
     } else {
       onAnswerUpdate((prevState: any) => [
         ...prevState,
-        { q: data.question, a: e.target.value, id: activeQuestion },
+        {
+          q: data.question,
+          a: e.target.value,
+          id: activeQuestion,
+          timeTaken: questionTime,
+        },
       ]);
     }
   };
-
   const nextClickHandler = (e: any) => {
+    clearInterval(interval);
+    setQuestionTime(0);
     if (e != null) {
       clearInterval(intervalRef.current);
-    } else {
-      if (answers.filter((e: any) => e.id === activeQuestion).length < 1) {
-        onAnswerUpdate((prevState: any) => [
-          ...prevState,
-          { q: data.question, a: "Skipped", id: activeQuestion },
-        ]);
-      }
+      setDisabled(true);
+    }
+    if (answers.filter((e: any) => e.id === activeQuestion).length < 1) {
+      onAnswerUpdate((prevState: any) => [
+        ...prevState,
+        {
+          q: data.question,
+          a: "Skipped",
+          id: activeQuestion,
+          timeTaken: questionTime,
+        },
+      ]);
+      setDisabled(true);
     }
     if (activeQuestion < numberOfQuestions - 1) {
       onSetActiveQuestion(activeQuestion + 1);
-     
+
       selected = "";
+      setDisabled(true);
     } else {
       onSetStep(3);
+      setDisabled(true);
     }
   };
   const skipQuestion = (e: any) => {
+    clearInterval(interval);
+    setQuestionTime(0);
     clearInterval(intervalRef.current);
     if (answers.filter((e: any) => e.id === activeQuestion).length < 1) {
       onAnswerUpdate((prevState: any) => [
         ...prevState,
-        { q: data.question, a: "Skipped", id: activeQuestion },
+        {
+          q: data.question,
+          a: "Skipped",
+          id: activeQuestion,
+          timeTaken: questionTime,
+        },
       ]);
     }
-
     if (activeQuestion < numberOfQuestions - 1) {
       onSetActiveQuestion(activeQuestion + 1);
-     
       selected = "";
     } else {
       onSetStep(3);
@@ -215,8 +239,7 @@ const Question = ({
     <div className="card">
       <H4>{timer}</H4>
       <H3>
-        {activeQuestion}
-        {data.question}
+        {activeQuestion}.{data.question}
       </H3>
       <RadioDiv ref={radiosWrapper}>
         {data.choices.map((choice: any, i: any) => (
@@ -232,8 +255,14 @@ const Question = ({
         ))}
       </RadioDiv>
       {error && <div>{error}</div>}
-      <Button onClick={nextClickHandler}>Next</Button>
       <Buttonskip onClick={skipQuestion}>Skip</Buttonskip>
+      {disabled ? (
+        <Button onClick={nextClickHandler} disabled={disabled}>
+          Next
+        </Button>
+      ) : (
+        <Buttondisable onClick={nextClickHandler}>Next</Buttondisable>
+      )}
     </div>
   );
 };

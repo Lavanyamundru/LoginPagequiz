@@ -1,4 +1,5 @@
-import React, { useState} from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
 import Start from "./Start";
 import Question from "./Question";
 import End from "./End";
@@ -11,16 +12,32 @@ const App = () => {
   const [answers, setAnswers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [time, setTime] = useState(0);
-const quizStartHandler = () => {
+  // useEffect(() => {
+  //   if(showModal === true) {
+  //     clearInterval(interval);
+
+  //   }
+  // }, [setShowModal]);
+  useEffect(() => {
+    if (step === 3) {
+      clearInterval(interval);
+    }
+  }, [step]);
+  const quizStartHandler = () => {
     setStep(2);
     interval = setInterval(() => {
-      setTime((prevTime) => prevTime + 1);
+      setTime(prevTime => prevTime + 1);
     }, 1000);
   };
   const setactiveQue = (q: any) => {
     setCurrentQuestionIndex(q);
   };
-
+  const resetClickHandler = () => {
+    setactiveQue(0);
+    setAnswers([]);
+    setStep(1);
+    setShowModal(false);
+  };
   return (
     <div>
       {step === 1 && <Start onQuizStart={quizStartHandler} />}
@@ -32,18 +49,20 @@ const quizStartHandler = () => {
           activeQuestion={currentQuestionIndex}
           onSetActiveQuestion={setactiveQue}
           onSetStep={setStep}
-          time={time}
           answers={answers}
         />
       )}
       {step === 3 && (
-        <End
-          showModal={showModal}
-          onAnswersCheck={() => setShowModal(true)}
+        <End showModal={showModal} onAnswersCheck={() => setShowModal(true)} />
+      )}
+      {showModal && (
+        <Modal
+          results={answers}
+          data={quizData.data}
+          onReset={resetClickHandler}
           time={time}
         />
       )}
-{showModal && <Modal results={answers} data={quizData.data} />}
     </div>
   );
 };

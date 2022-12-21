@@ -24,14 +24,27 @@ const Button=styled.button`
 const H2=styled.h2`
     margin:auto;
 `
+
+function selectedCategory(){
+
+}
+// const categories=['data','mathematics']
 const Start = ({ onQuizStart }:any) => {
   return(
-    
-        <Div>
+  <Div>
+    {/* <h1>Select the category :</h1>
+    <ol>{
+        categories.map((item)=>(
+          <>
+            <li id={item} >{item}</li>
+          </>
+        ))
+      }
+    </ol> */}
   <H2>Start the quiz</H2>
   <p >Good luck!</p>
   <Button onClick={onQuizStart}>Start</Button>
-          </Div>
+  </Div>
  
   );
 }

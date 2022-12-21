@@ -45,5 +45,66 @@
         "choices": ["Wolfsburg", "Munich", "Berlin", "Frankfurt"],
         "answer": "Berlin"
       }
+    ],
+    "mathematics":[
+      {
+        "question": "59 + 95",
+        "choices": [54, 102,154, 112],
+        "answer": 154
+       },
+      {
+        "question": "313 x 5",
+        "choices": [1565,1315, 1535, 1554],
+        "answer": 1565
+       
+      },
+      {
+        "question": "376 - 1",
+        "choices": [275, 375,323, 333],
+        "answer": 375
+        
+      },
+      {
+        "question": "304 x 79",
+        "choices": [23766, 23986, 24005,24016],
+        "answer": 24016
+        
+      },
+      {
+        "question": "116 - 79",
+        "choices": [36, 32, -13,37],
+        "answer": 37
+      },
+      {
+        "question": "364 - 27",
+        "choices": [237, 337,285, 295],
+        "answer": 337
+        
+      },
+      {
+        "question": "167 + 65",
+        "choices": [132, 232,180, 190] ,
+        "answer": 232
+        
+      },
+      {
+        "question": "42 - 49",
+        "choices": [-8, -12, -57,-7],
+        "answer": -7
+        
+      },
+      {
+        "question": "383 + 39",
+        "choices": [422,322, 370, 380],
+        "answer": 422
+        
+      },
+      {
+        "question": "72 x 67",
+        "choices": [4574, 4794, 4813,4824],
+        "answer": 4824
+        
+      }
     ]
+
   }

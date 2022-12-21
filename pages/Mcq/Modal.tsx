@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
+import { formatTime } from "../utils";
 const P = styled.p`
   margin-top: 15px;
 `;
@@ -10,26 +10,52 @@ const Para = styled.p`
   font-size: 18px;
 `;
 const Pcorrect = styled.p`
-  font-family: "Open Sans", sans-serif;
+  font-family: "PT Sans", sans-serif;
   color: #1e4d1e;
-  font-size: 20px;
+  font-size: 16px;
+  padding-top: 10px;
+  padding-left: 10px;
 `;
 const Strong = styled.strong`
   display: flex;
 `;
-const Section = styled.section`
+const Section = styled.section<Props>`
   background-color: ${(props) => (props.IsCorrect ? "#e6ffee" : "#ffd6cc")};
   width: 900px;
 `;
-const Div = styled.div`
+const Div = styled.div<Props>`
   background-color: ${(props) => props.choiceColor};
   font-weight: 100;
   color: black;
   border-radius: 2px;
   margin-top: 10px;
 `;
+const Button = styled.button`
+  background-color: #ecced8;
+  color: #0c0a0a;
+  padding: 10px 30px;
+  margin-right: 15px;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  float: right;
+`;
+const Divhead = styled.div`
+  background-color: #e8e8e8;
+  height: 100px;
+  margin-top: 100px;
+  border-radius: 2px;
+`;
+const Ptime = styled.p`
+  margin-left: 12px;
+  margin-top: 3px;
+`;
+interface Props {
+  IsCorrect?: any;
+  choiceColor?: any;
+}
 
-const Modal = ({ results, data }: any) => {
+const Modal = ({ results, data, onReset, time }: any) => {
   const [IsCorrect, setIsCorrect] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(0);
 
@@ -47,17 +73,25 @@ const Modal = ({ results, data }: any) => {
   }, []);
   return (
     <div>
-      <Pcorrect>
-        {" "}
-        CorrectAnswers: {correctAnswers} of {data.length}
-      </Pcorrect>
-
+      <Divhead>
+        <Pcorrect>
+          {" "}
+          <strong>
+            {" "}
+            CorrectAnswers: {correctAnswers} of {data.length}
+          </strong>
+          <Button onClick={onReset}>Try again</Button>
+        </Pcorrect>
+        <Ptime>
+          <strong>Total time taken: {formatTime(time)}</strong>
+        </Ptime>
+      </Divhead>
       <ul className="ans-card">
         {data.map((result: any, i: any) => (
           <li key={i}>
             <Section
               className="ans-section"
-              IsCorrect={result.answer === results[i].a ? true : false}
+              IsCorrect={result.answer === results[i]?.a ? true : false}
             >
               <p>
                 {results[i].a === "Skipped" ? (
@@ -68,7 +102,7 @@ const Modal = ({ results, data }: any) => {
               </p>
               <P className="card-title">
                 <strong>
-                  <b>{result.question}</b>
+                  <b>{result.question}</b> {results[i]?.timeTaken}
                 </strong>
               </P>
               {result.choices?.map((choice: any, j: any) => (
@@ -76,12 +110,12 @@ const Modal = ({ results, data }: any) => {
                   key={j}
                   choiceColor={
                     result.answer === results[i].a &&
-                    results[i].a === choice &&
+                    results[i]?.a === choice &&
                     choice == result.answer
                       ? "#dddddd "
                       : choice === result.answer
                       ? "#b3ffb3"
-                      : results[i].a === choice && choice !== result.answer
+                      : results[i]?.a === choice && choice !== result.answer
                       ? "#ff4d4d"
                       : "transparent"
                   }
