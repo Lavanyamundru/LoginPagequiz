@@ -61,13 +61,13 @@ const Start = ({ onQuizStart, data, setSelectedCategory }: any) => {
           {data?.map((item: any, i: any) => (
               <Label key={i} >
                 <Div>
-                <label
+                <Label className="cardid"
                   onClick={() => {
                     setSelectedCategory(i);
                   }}
                 >
                   {item.id}
-                </label>
+                </Label>
                 </Div>
               </Label>
               

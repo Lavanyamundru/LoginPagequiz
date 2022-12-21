@@ -43,7 +43,6 @@ const End = ({ onAnswersCheck, showModal }: any) => {
           <Div>
             <H4>You have completed the quiz!</H4>
             <P>Thank you!</P>
-
             <Button onClick={onAnswersCheck}>Check your answers</Button>
           </Div>
         )}
