@@ -1,23 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { formatTime } from "../utils";
-const P = styled.p`
-  margin-top: 15px;
-`;
-const Para = styled.p`
-  margin-top: 5px;
-  font-family: "PT Sans", sans-serif;
-  font-size: 18px;
-`;
 const Pcorrect = styled.p`
   font-family: "PT Sans", sans-serif;
   color: #1e4d1e;
   font-size: 16px;
   padding-top: 10px;
   padding-left: 10px;
-`;
-const Strong = styled.strong`
-  display: flex;
 `;
 const Section = styled.section<Props>`
   background-color: ${(props) => (props.IsCorrect ? "#e6ffee" : "#ffd6cc")};
@@ -43,13 +32,14 @@ const Button = styled.button`
 const Divhead = styled.div`
   background-color: #e8e8e8;
   height: 100px;
-  margin-top: 100px;
+  margin-top: 1350px;
   border-radius: 2px;
 `;
 const Ptime = styled.p`
   margin-left: 12px;
   margin-top: 3px;
 `;
+
 interface Props {
   IsCorrect?: any;
   choiceColor?: any;
@@ -93,18 +83,20 @@ const Modal = ({ results, data, onReset, time }: any) => {
               className="ans-section"
               IsCorrect={result.answer === results[i]?.a ? true : false}
             >
-              <p>
-                {results[i].a === "Skipped" ? (
-                  <p className="ans-p">Skipped</p>
+           {results[i].a === "Skipped" ? (
+                  <span id="skip-tag">
+                    <p className="ans-p">Skipped</p>
+                    <strong className="timeta">{results[i]?.timeTaken}</strong>
+                  </span>
                 ) : (
-                  ""
+                  <strong>{results[i]?.timeTaken}</strong>
                 )}
+            
+
+              <p className="card-title">
+                <b>{result.question}</b>
               </p>
-              <P className="card-title">
-                <strong>
-                  <b>{result.question}</b> {results[i]?.timeTaken}
-                </strong>
-              </P>
+
               {result.choices?.map((choice: any, j: any) => (
                 <Div
                   key={j}

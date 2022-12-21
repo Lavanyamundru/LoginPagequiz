@@ -1,110 +1,168 @@
 {
-    "data": [
-      {
-        "question": "What is the capital of Croatia ?",
-        "choices": ["Split", "Osijek", "Zagreb", "Rijeka"],
-        "answer": "Zagreb"
-      },
-      {
-        "question": "What is the capital of Greece?",
-        "choices": ["Athens", "Patras", "Cutedog", "Koper"],
-        "answer": "Athens"
-      },
-      {
-        "question": "What has a neck but no head? ?",
-        "choices": ["Pan", "Bottle", "Plate", "bowl"],
-        "answer": "Bottle"
-      },
-      {
-        "question": "Where do fish keep their money?",
-        "choices": ["Pool", "Riverbank", "River","Lake"],
-        "answer": "Riverbank"
-      },
-      {
-        "question": "What flies without wings?",
-        "choices": ["Airplane", "Time", "Insect", "Animal"],
-        "answer": "Time"
-      },
-      {
-        "question": "What is the capital of Hungary ?",
-        "choices": ["Zalaegerszeg", "Eger", "Szeged", "Budapest"],
-        "answer": "Budapest"
-      },
-      {
-        "question": "What is the capital of Slovakia ?",
-        "choices": ["Košice", "Nitra", "Bratislava", "Poprad"],
-        "answer": "Bratislava"
-      },
-      {
-        "question": "What's the difference between here and there?",
-        "choices": ["R", "T", "E", "H"],
-        "answer": "H"
-      },
-      {
-        "question": "What is the capital of Germany ?",
-        "choices": ["Wolfsburg", "Munich", "Berlin", "Frankfurt"],
-        "answer": "Berlin"
-      }
-    ],
-    "mathematics":[
-      {
-        "question": "59 + 95",
-        "choices": [54, 102,154, 112],
-        "answer": 154
-       },
-      {
-        "question": "313 x 5",
-        "choices": [1565,1315, 1535, 1554],
-        "answer": 1565
-       
-      },
-      {
-        "question": "376 - 1",
-        "choices": [275, 375,323, 333],
-        "answer": 375
-        
-      },
-      {
-        "question": "304 x 79",
-        "choices": [23766, 23986, 24005,24016],
-        "answer": 24016
-        
-      },
-      {
-        "question": "116 - 79",
-        "choices": [36, 32, -13,37],
-        "answer": 37
-      },
-      {
-        "question": "364 - 27",
-        "choices": [237, 337,285, 295],
-        "answer": 337
-        
-      },
-      {
-        "question": "167 + 65",
-        "choices": [132, 232,180, 190] ,
-        "answer": 232
-        
-      },
-      {
-        "question": "42 - 49",
-        "choices": [-8, -12, -57,-7],
-        "answer": -7
-        
-      },
-      {
-        "question": "383 + 39",
-        "choices": [422,322, 370, 380],
-        "answer": 422
-        
-      },
-      {
-        "question": "72 x 67",
+  "data": [
+    {
+      "id": "GK",
+      "Questions": [
+        {
+          "question": "What is the capital of Croatia ?",
+          "choices": ["Split", "Osijek", "Zagreb", "Rijeka"],
+          "answer": "Zagreb"
+        },
+        {
+          "question": "What is the capital of Greece?",
+          "choices": ["Athens", "Patras", "Cutedog", "Koper"],
+          "answer": "Athens"
+        },
+        {
+          "question": "What has a neck but no head? ?",
+          "choices": ["Pan", "Bottle", "Plate", "bowl"],
+          "answer": "Bottle"
+        },
+        {
+          "question": "Where do fish keep their money?",
+          "choices": ["Pool", "Riverbank", "River", "Lake"],
+          "answer": "Riverbank"
+        },
+        {
+          "question": "What flies without wings?",
+          "choices": ["Airplane", "Time", "Insect", "Animal"],
+          "answer": "Time"
+        },
+        {
+          "question": "What is the capital of Hungary ?",
+          "choices": ["Zalaegerszeg", "Eger", "Szeged", "Budapest"],
+          "answer": "Budapest"
+        },
+        {
+          "question": "What is the capital of Slovakia ?",
+          "choices": ["Košice", "Nitra", "Bratislava", "Poprad"],
+          "answer": "Bratislava"
+        },
+        {
+          "question": "What's the difference between here and there?",
+          "choices": ["R", "T", "E", "H"],
+          "answer": "H"
+        },
+        {
+          "question": "What is the capital of Germany ?",
+          "choices": ["Wolfsburg", "Munich", "Berlin", "Frankfurt"],
+          "answer": "Berlin"
+        }
+      ]
+    },
+    {
+      "id": "Maths",
+      "Questions": [
+        {
+              "question": "59 + 95",
+              "choices": [54, 102,154, 112],
+              "answer": 154
+             },
+            {
+              "question": "313 x 5",
+              "choices": [1565,1315, 1535, 1554],
+              "answer": 1565
+             
+            },
+            {
+              "question": "376 - 1",
+              "choices": [275, 375,323, 333],
+              "answer": 375
+              
+            },
+            {
+              "question": "304 x 79",
+              "choices": [23766, 23986, 24005,24016],
+              "answer": 24016
+              
+            },
+            {
+              "question": "116 - 79",
+              "choices": [36, 32, -13,37],
+              "answer": 37
+            },
+            {
+              "question": "364 - 27",
+              "choices": [237, 337,285, 295],
+              "answer": 337
+              
+            },
+            {
+              "question": "167 + 65",
+              "choices": [132, 232,180, 190] ,
+              "answer": 232
+              
+            },
+            {
+              "question": "42 - 49",
+              "choices": [-8, -12, -57,-7],
+              "answer": -7
+              
+            },
+            {
+              "question": "383 + 39",
+              "choices": [422,322, 370, 380],
+              "answer": 422
+              
+            },
+            {
+              "question": "72 x 67",
+              "choices": [4574, 4794, 4813,4824],
+              "answer": 4824
+              
+            }
+      ]
+    },
+    {
+      "id": "Reasoning",
+      "Questions": [
+        { "question": "72 x 67",
         "choices": [4574, 4794, 4813,4824],
         "answer": 4824
-        
-      }
-    ]
-
-  }
+        },
+        {
+          "question": "What is the capital of Greece?",
+          "choices": ["Athens", "Patras", "Cutedog", "Koper"],
+          "answer": "Athens"
+        },
+        {
+          "question": "42 - 49",
+              "choices": [-8, -12, -57,-7],
+              "answer": -7
+        },
+        {
+          "question": "Where do fish keep their money?",
+          "choices": ["Pool", "Riverbank", "River", "Lake"],
+          "answer": "Riverbank"
+        },
+        {
+         
+          "question": "364 - 27",
+          "choices": [237, 337,285, 295],
+          "answer": 337
+        },
+        {
+          "question": "42 - 49",
+          "choices": [-8, -12, -57,-7],
+          "answer": -7
+          
+        },
+        {
+          "question": "What is the capital of Slovakia ?",
+          "choices": ["Košice", "Nitra", "Bratislava", "Poprad"],
+          "answer": "Bratislava"
+        },
+        {
+          "question": "304 x 79",
+          "choices": [23766, 23986, 24005,24016],
+          "answer": 24016
+        },
+        {
+          "question": "What is the capital of Germany ?",
+          "choices": ["Wolfsburg", "Munich", "Berlin", "Frankfurt"],
+          "answer": "Berlin"
+        }
+      ]
+    }
+  ]
+}

@@ -11,19 +11,42 @@ body {
   align-items: center;
   height: 100vh;
   width: 100vw;
-  font-family: "Raleway", sans-serif;
+  /* font-family: "Raleway", sans-serif; */
   background-color: white;
 }
-
+.card-title{
+  color:black;
+}
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(17, 16, 16, 0.2);
   transition: 0.3s;
   width: 900px;
   Height: 450px;
 }
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 5px;
+  column-gap: 0px;
+  margin-top: 30px;
+  width: 302px;
+  margin-left: 0px;
+}
+
+.sub-menu {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.card {    
+  background-color: aliceblue;
+  /* font-style: italic; */
+  font-weight: 400;
+  
+}
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px 0 rgba(123, 122, 122, 0.2);
 }
 
 .cardness {
@@ -50,14 +73,25 @@ body {
 
 .ans-card {
   height: 500px;
-  /* overflow-y: scroll; */
   width: 100%;
 }
 
-.ans-p {
-  margin-left: 800px;
-  border: 1px solid rgb(202, 198, 198);
-  color: rgb(23, 22, 22);
+span#skip-tag {
+  display: flex;
+  float: right;
+  justify-content: space-evenly;
+  width: 100px;
+}
+
+
+span#skip-tag> p{
+  border: rgb(167, 166, 166) 1px solid;
+  color:black;
+}
+span#skip-tag> strong{
+  border: rgb(167, 166, 166) 1px solid;
+  color:black;
+  border-radius: 5px;
 }
 
 .hidden {
@@ -70,7 +104,12 @@ body {
   width: 100%;
   animation: 10s timer infinite linear;
 }
-
+.card-category{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 300px;
+  Height: 150px;
+}
 
 @keyframes timer {
   100% {

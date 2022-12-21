@@ -12,21 +12,18 @@ const App = () => {
   const [answers, setAnswers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [time, setTime] = useState(0);
-  // useEffect(() => {
-  //   if(showModal === true) {
-  //     clearInterval(interval);
-
-  //   }
-  // }, [setShowModal]);
+  const [selectedCategoryIndex, setSelectedCategory] = useState(0);
+  const [SelectedCategoryData, setSelectedCategoryData] = useState<any>([]);
   useEffect(() => {
     if (step === 3) {
       clearInterval(interval);
     }
-  }, [step]);
+    setSelectedCategoryData(quizData.data[selectedCategoryIndex]?.Questions);
+  }, [step, selectedCategoryIndex]);
   const quizStartHandler = () => {
     setStep(2);
     interval = setInterval(() => {
-      setTime(prevTime => prevTime + 1);
+      setTime((prevTime) => prevTime + 1);
     }, 1000);
   };
   const setactiveQue = (q: any) => {
@@ -40,12 +37,18 @@ const App = () => {
   };
   return (
     <div>
-      {step === 1 && <Start onQuizStart={quizStartHandler} />}
+      {step === 1 && (
+        <Start
+          onQuizStart={quizStartHandler}
+          data={quizData.data}
+          setSelectedCategory={setSelectedCategory}
+        />
+      )}
       {step === 2 && (
         <Question
-          data={quizData.data[currentQuestionIndex]}
+          data={SelectedCategoryData[currentQuestionIndex]}
           onAnswerUpdate={setAnswers}
-          numberOfQuestions={quizData.data.length}
+          numberOfQuestions={SelectedCategoryData.length}
           activeQuestion={currentQuestionIndex}
           onSetActiveQuestion={setactiveQue}
           onSetStep={setStep}
@@ -58,7 +61,7 @@ const App = () => {
       {showModal && (
         <Modal
           results={answers}
-          data={quizData.data}
+          data={SelectedCategoryData}
           onReset={resetClickHandler}
           time={time}
         />
